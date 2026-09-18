@@ -1,0 +1,29 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+
+while true do
+    local args = {
+        [1] = "Scout Egg",
+        [2] = CFrame.new(20.52665901184082, -93.30819702148438, 57.03084945678711)
+            * CFrame.Angles(
+                9.094947017729282e-13,
+                1.4210854715202004e-14,
+                -2.3728504512827986e-13
+            ),
+        [3] = false,
+        [4] = "Scout Egg",
+        [5] = {}
+    }
+
+    ReplicatedStorage.Functions.SpawnTower:InvokeServer(unpack(args))
+
+    task.wait(0.5)
+
+    local upgrade = Players.LocalPlayer.PlayerGui.GameGui.UnitManager.All.Upgrade
+
+    if upgrade:IsA("GuiButton") then
+        firesignal(upgrade.Activated)
+    end
+
+    task.wait(0.5)
+end
