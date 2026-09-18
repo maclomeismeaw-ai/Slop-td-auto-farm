@@ -1,0 +1,8 @@
+local endScreen = game:GetService("Players").LocalPlayer.PlayerGui.GameGui.EndScreen
+local event = game:GetService("ReplicatedStorage").Events.EndDecision
+
+endScreen:GetPropertyChangedSignal("Visible"):Connect(function()
+    if endScreen.Visible then
+        event:FireServer(true)
+    end
+end)
