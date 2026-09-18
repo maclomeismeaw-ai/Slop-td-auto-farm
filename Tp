@@ -1,0 +1,7 @@
+while true do
+    game:GetService("ReplicatedStorage").Events.EnterElevator:FireServer("Elevator7")
+    task.wait(1)
+
+    game:GetService("ReplicatedStorage").Events.StartElevator:FireServer("Elevator7")
+    task.wait(1)
+end
