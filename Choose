@@ -12,4 +12,4 @@ ReplicatedStorage.Events.VoteForMap:FireServer("SpaceEndless")
 
 task.wait(8)
 
-ReplicatedStorage.Events.VoteForComplication:FireServer("Nightmare")
+ReplicatedStorage.Events.VoteForComplication:FireServer("Normal")
