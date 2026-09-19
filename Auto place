@@ -42,7 +42,7 @@ spawnDiamondCat(Vector3.new(
     -14.22479248046875
 ))
 
-task.wait(1)
+task.wait(5)
 
 waitForCash(700)
 spawnDiamondCat(Vector3.new(
@@ -51,7 +51,7 @@ spawnDiamondCat(Vector3.new(
     -15.084259033203125
 ))
 
-task.wait(1)
+task.wait(10)
 
 waitForCash(700)
 spawnDiamondCat(Vector3.new(
