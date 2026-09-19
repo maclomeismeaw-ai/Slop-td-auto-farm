@@ -3,15 +3,32 @@ local gui = player.PlayerGui.GameGui
 
 local function waitAndFire(button)
     repeat
-        task.wait(1)
+        task.wait(0.1)
     until button.Visible
 
-    repeat
-        firesignal(button.MouseButton1Click)
-        task.wait(1)
-    until not button.Visible
+    firesignal(button.MouseButton1Click)
 end
 
+-- รอ GameGui โหลดครบก่อน
+repeat
+    task.wait(0.1)
+until gui
+    and gui.Voting
+    and gui.Voting.Universes
+    and gui.Voting.Maps
+    and gui.ComplicationVoting
+
+-- ตัวที่ 1
 waitAndFire(gui.Voting.Universes.Space)
+
+-- รอ 1 วิ
+task.wait(1)
+
+-- ตัวที่ 2
 waitAndFire(gui.Voting.Maps.SpaceEndless)
+
+-- รอ 6 วิ
+task.wait(6)
+
+-- ตัวที่ 3
 waitAndFire(gui.ComplicationVoting.Modes.Nightmare)
