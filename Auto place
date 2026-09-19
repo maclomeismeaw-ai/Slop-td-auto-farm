@@ -2,7 +2,6 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local player = Players.LocalPlayer
-local cash = player:WaitForChild("Cash")
 local spawnTower = ReplicatedStorage.Functions.SpawnTower
 
 task.spawn(function()
@@ -17,45 +16,24 @@ task.spawn(function()
     end
 end)
 
-local function waitForCash(amount)
-    repeat
-        task.wait(0.1)
-    until cash.Value >= amount
+local positions = {
+    Vector3.new(20.852458953857422, -93.30819702148438, 59.62067413330078),
+    Vector3.new(18.167613983154297, -93.30819702148438, 56.619293212890625),
+    Vector3.new(20.74317169189453, -93.30819702148438, 56.65580368041992)
+}
+
+while true do
+    for _, position in ipairs(positions) do
+        local args = {
+            [1] = "Scout Egg",
+            [2] = CFrame.new(position) * CFrame.Angles(-0, 0, -0),
+            [3] = false,
+            [4] = "Scout Egg",
+            [5] = {}
+        }
+
+        spawnTower:InvokeServer(unpack(args))
+
+        task.wait(1)
+    end
 end
-
-local function spawnScoutEgg(position)
-    local args = {
-        [1] = "Scout Egg",
-        [2] = CFrame.new(position) * CFrame.Angles(-0, 0, -0),
-        [3] = false,
-        [4] = "Scout Egg",
-        [5] = {}
-    }
-
-    spawnTower:InvokeServer(unpack(args))
-end
-
-waitForCash(440)
-spawnScoutEgg(Vector3.new(
-    20.852458953857422,
-    -93.30819702148438,
-    59.62067413330078
-))
-
-task.wait(1)
-
-waitForCash(440)
-spawnScoutEgg(Vector3.new(
-    18.167613983154297,
-    -93.30819702148438,
-    56.619293212890625
-))
-
-task.wait(1)
-
-waitForCash(440)
-spawnScoutEgg(Vector3.new(
-    20.74317169189453,
-    -93.30819702148438,
-    56.65580368041992
-))
