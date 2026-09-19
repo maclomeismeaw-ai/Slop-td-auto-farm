@@ -3,7 +3,6 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local endScreen = Players.LocalPlayer.PlayerGui.GameGui.EndScreen
 local endDecision = ReplicatedStorage.Events.EndDecision
-local exitGame = ReplicatedStorage.Events.ExitGame
 
 endScreen:GetPropertyChangedSignal("Visible"):Connect(function()
     if endScreen.Visible then
@@ -15,6 +14,6 @@ endScreen:GetPropertyChangedSignal("Visible"):Connect(function()
 
         task.wait(10)
 
-        exitGame:FireServer()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/2sneaky/rbxscripts.github.io/refs/heads/main/simple_rejoin"))()
     end
 end)
