@@ -4,10 +4,12 @@ local gui = player.PlayerGui.GameGui
 
 ReplicatedStorage.Functions.ChangeSpeed:InvokeServer(5)
 
-while true do
-    firesignal(gui.Voting.Universes.Space.MouseButton1Click)
-    firesignal(gui.Voting.Maps.SpaceEndless.MouseButton1Click)
-    firesignal(gui.ComplicationVoting.Modes.Nightmare.MouseButton1Click)
+firesignal(gui.Voting.Universes.Space.MouseButton1Click)
 
-    task.wait(0.1)
-end
+task.wait(1)
+
+ReplicatedStorage.Events.VoteForMap:FireServer("SpaceEndless")
+
+task.wait(6)
+
+ReplicatedStorage.Events.VoteForComplication:FireServer("Nightmare")
