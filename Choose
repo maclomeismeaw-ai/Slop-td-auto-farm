@@ -3,3 +3,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 ReplicatedStorage.Functions.ChangeSpeed:InvokeServer(5)
 
 ReplicatedStorage.Events.VoteForMap:FireServer("SpaceEndless")
+
+task.wait(2)
+
+ReplicatedStorage.Events.VoteForComplication:FireServer("Nightmare")
