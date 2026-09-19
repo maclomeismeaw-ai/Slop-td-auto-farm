@@ -8,10 +8,8 @@ local elevator = workspace.Elevators.Elevator7
 local enterEvent = ReplicatedStorage.Events.EnterElevator
 local startEvent = ReplicatedStorage.Events.StartElevator
 
--- วาร์ปไป Wall1
 character:PivotTo(elevator.Wall1.CFrame)
 
--- Enter → Start วนซ้ำ
 while task.wait(0.1) do
     enterEvent:FireServer("Elevator7")
     task.wait(0.1)
