@@ -3,12 +3,12 @@ local gui = player.PlayerGui.GameGui
 
 local function waitAndFire(button)
     repeat
-        task.wait(0.1)
+        task.wait(1)
     until button.Visible
 
     repeat
         firesignal(button.MouseButton1Click)
-        task.wait(0.1)
+        task.wait(1)
     until not button.Visible
 end
 
