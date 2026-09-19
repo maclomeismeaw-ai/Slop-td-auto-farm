@@ -3,6 +3,10 @@ local event = game:GetService("ReplicatedStorage").Events.EndDecision
 
 endScreen:GetPropertyChangedSignal("Visible"):Connect(function()
     if endScreen.Visible then
-        event:FireServer(true)
+        local args = {
+            [1] = true
+        }
+
+        event:FireServer(unpack(args))
     end
 end)
