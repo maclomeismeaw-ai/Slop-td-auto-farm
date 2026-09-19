@@ -10,6 +10,6 @@ task.wait(1)
 
 ReplicatedStorage.Events.VoteForMap:FireServer("SpaceEndless")
 
-task.wait(6)
+task.wait(8)
 
 ReplicatedStorage.Events.VoteForComplication:FireServer("Nightmare")
