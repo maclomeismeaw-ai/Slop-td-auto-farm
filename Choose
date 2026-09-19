@@ -1,9 +1,17 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local player = game:GetService("Players").LocalPlayer
+local gui = player.PlayerGui.GameGui
 
-ReplicatedStorage.Functions.ChangeSpeed:InvokeServer(5)
+local function waitAndFire(button)
+    repeat
+        task.wait(0.1)
+    until button.Visible
 
-ReplicatedStorage.Events.VoteForMap:FireServer("SpaceEndless")
+    repeat
+        firesignal(button.MouseButton1Click)
+        task.wait(0.1)
+    until not button.Visible
+end
 
-task.wait(5)
-
-ReplicatedStorage.Events.VoteForComplication:FireServer("Nightmare")
+waitAndFire(gui.Voting.Universes.Space)
+waitAndFire(gui.Voting.Maps.SpaceEndless)
+waitAndFire(gui.ComplicationVoting.Modes.Nightmare)
