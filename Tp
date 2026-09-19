@@ -2,16 +2,26 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local player = Players.LocalPlayer
+
+local elevator = workspace:WaitForChild("Elevators"):WaitForChild("Elevator7")
+local wall = elevator:WaitForChild("Wall1")
+
+local events = ReplicatedStorage:WaitForChild("Events")
+local enterEvent = events:WaitForChild("EnterElevator")
+local startEvent = events:WaitForChild("StartElevator")
+
 local character = player.Character or player.CharacterAdded:Wait()
 
-local elevator = workspace.Elevators.Elevator7
-local enterEvent = ReplicatedStorage.Events.EnterElevator
-local startEvent = ReplicatedStorage.Events.StartElevator
+task.wait(1)
 
-character:PivotTo(elevator.Wall1.CFrame)
+character:PivotTo(wall.CFrame)
 
-while task.wait(0.1) do
+task.wait(0.5)
+
+while true do
     enterEvent:FireServer("Elevator7")
-    task.wait(0.1)
+    task.wait(0.2)
+
     startEvent:FireServer("Elevator7")
+    task.wait(0.5)
 end
