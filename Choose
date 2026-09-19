@@ -1,28 +1,14 @@
 local player = game:GetService("Players").LocalPlayer
 local gui = player.PlayerGui.GameGui
 
-local function waitAndFire(button)
-    repeat
-        task.wait(0.1)
-    until button.Visible
+task.wait(5)
 
-    firesignal(button.MouseButton1Click)
-end
-
-repeat
-    task.wait(0.1)
-until gui
-    and gui.Voting
-    and gui.Voting.Universes
-    and gui.Voting.Maps
-    and gui.ComplicationVoting
-
-waitAndFire(gui.Voting.Universes.Space)
+firesignal(gui.Voting.Universes.Space.MouseButton1Click)
 
 task.wait(1)
 
-waitAndFire(gui.Voting.Maps.SpaceEndless)
+firesignal(gui.Voting.Maps.SpaceEndless.MouseButton1Click)
 
 task.wait(6)
 
-waitAndFire(gui.ComplicationVoting.Modes.Nightmare)
+firesignal(gui.ComplicationVoting.Modes.Nightmare.MouseButton1Click)
