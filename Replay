@@ -1,5 +1,9 @@
-local endScreen = game:GetService("Players").LocalPlayer.PlayerGui.GameGui.EndScreen
-local event = game:GetService("ReplicatedStorage").Events.EndDecision
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local endScreen = Players.LocalPlayer.PlayerGui.GameGui.EndScreen
+local endDecision = ReplicatedStorage.Events.EndDecision
+local exitGame = ReplicatedStorage.Events.ExitGame
 
 endScreen:GetPropertyChangedSignal("Visible"):Connect(function()
     if endScreen.Visible then
@@ -7,6 +11,10 @@ endScreen:GetPropertyChangedSignal("Visible"):Connect(function()
             [1] = true
         }
 
-        event:FireServer(unpack(args))
+        endDecision:FireServer(unpack(args))
+
+        task.wait(10)
+
+        exitGame:FireServer()
     end
 end)
