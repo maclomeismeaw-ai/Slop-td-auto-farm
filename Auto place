@@ -23,39 +23,39 @@ local function waitForCash(amount)
     until cash.Value >= amount
 end
 
-local function spawnDiamondCat(position)
+local function spawnScoutEgg(position)
     local args = {
-        [1] = "Diamond Cat",
-        [2] = CFrame.new(position),
+        [1] = "Scout Egg",
+        [2] = CFrame.new(position) * CFrame.Angles(-0, 0, -0),
         [3] = false,
-        [4] = "Diamond Cat",
+        [4] = "Scout Egg",
         [5] = {}
     }
 
     spawnTower:InvokeServer(unpack(args))
 end
 
-waitForCash(700)
-spawnDiamondCat(Vector3.new(
-    47.574317932128906,
-    -93.26480865478516,
-    -14.22479248046875
+waitForCash(440)
+spawnScoutEgg(Vector3.new(
+    20.80208396911621,
+    -93.30819702148438,
+    59.90125274658203
 ))
 
-task.wait(10)
+task.wait(1)
 
-waitForCash(700)
-spawnDiamondCat(Vector3.new(
-    -7.871477127075195,
-    -93.26480865478516,
-    -15.084259033203125
+waitForCash(440)
+spawnScoutEgg(Vector3.new(
+    20.82056427001953,
+    -93.30819702148438,
+    58.04612350463867
 ))
 
-task.wait(10)
+task.wait(1)
 
-waitForCash(700)
-spawnDiamondCat(Vector3.new(
-    20.924152374267578,
-    -93.26480865478516,
-    56.32746887207031
+waitForCash(440)
+spawnScoutEgg(Vector3.new(
+    21.80208396911621,
+    -93.30819702148438,
+    59.90125274658203
 ))
