@@ -1,12 +1,19 @@
-local player = game.Players.LocalPlayer
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 
-character:PivotTo(workspace.Elevators.Elevator7.Wall1.CFrame)
+local elevator = workspace.Elevators.Elevator7
+local enterEvent = ReplicatedStorage.Events.EnterElevator
+local startEvent = ReplicatedStorage.Events.StartElevator
 
-while true do
-    game:GetService("ReplicatedStorage").Events.EnterElevator:FireServer("Elevator7")
-    task.wait(0.1)
+-- วาร์ปไป Wall1
+character:PivotTo(elevator.Wall1.CFrame)
 
-    game:GetService("ReplicatedStorage").Events.StartElevator:FireServer("Elevator7")
+-- Enter → Start วนซ้ำ
+while task.wait(0.1) do
+    enterEvent:FireServer("Elevator7")
     task.wait(0.1)
+    startEvent:FireServer("Elevator7")
 end
