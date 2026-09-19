@@ -1,29 +1,61 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-while true do
+local player = Players.LocalPlayer
+local cash = player:WaitForChild("Cash")
+local spawnTower = ReplicatedStorage.Functions.SpawnTower
+
+task.spawn(function()
+    while true do
+        local upgrade = player.PlayerGui.GameGui.UnitManager.All.Upgrade
+
+        if upgrade:IsA("GuiButton") then
+            firesignal(upgrade.Activated)
+        end
+
+        task.wait(0.5)
+    end
+end)
+
+local function waitForCash(amount)
+    repeat
+        task.wait(0.1)
+    until cash.Value >= amount
+end
+
+local function spawnDiamondCat(position)
     local args = {
-        [1] = "Scout Egg",
-        [2] = CFrame.new(20.52665901184082, -93.30819702148438, 57.03084945678711)
-            * CFrame.Angles(
-                9.094947017729282e-13,
-                1.4210854715202004e-14,
-                -2.3728504512827986e-13
-            ),
+        [1] = "Diamond Cat",
+        [2] = CFrame.new(position),
         [3] = false,
-        [4] = "Scout Egg",
+        [4] = "Diamond Cat",
         [5] = {}
     }
 
-    ReplicatedStorage.Functions.SpawnTower:InvokeServer(unpack(args))
-
-    task.wait(0.5)
-
-    local upgrade = Players.LocalPlayer.PlayerGui.GameGui.UnitManager.All.Upgrade
-
-    if upgrade:IsA("GuiButton") then
-        firesignal(upgrade.Activated)
-    end
-
-    task.wait(0.5)
+    spawnTower:InvokeServer(unpack(args))
 end
+
+waitForCash(700)
+spawnDiamondCat(Vector3.new(
+    47.574317932128906,
+    -93.26480865478516,
+    -14.22479248046875
+))
+
+task.wait(1)
+
+waitForCash(700)
+spawnDiamondCat(Vector3.new(
+    -7.871477127075195,
+    -93.26480865478516,
+    -15.084259033203125
+))
+
+task.wait(1)
+
+waitForCash(700)
+spawnDiamondCat(Vector3.new(
+    20.924152374267578,
+    -93.26480865478516,
+    56.32746887207031
+))
