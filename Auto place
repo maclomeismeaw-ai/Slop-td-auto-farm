@@ -18,16 +18,21 @@ end)
 
 task.spawn(function()
     local positions = {
-        Vector3.new(20.852458953857422, -93.30819702148438, 59.62067413330078),
-        Vector3.new(18.167613983154297, -93.30819702148438, 56.619293212890625),
-        Vector3.new(-19.582534790039062, -93.30819702148438, -4.966239929199219)
+        CFrame.new(20.08582305908203, -93.30819702148438, 56.9916877746582)
+            * CFrame.Angles(6.984919309616089e-10, -1.0913936421275139e-11, -2.9587450382524e-14),
+
+        CFrame.new(-8.190139770507812, -93.30819702148438, -14.474617004394531)
+            * CFrame.Angles(2.384185791015625e-07, 3.7252831930345565e-09, -6.22028508701078e-08),
+
+        CFrame.new(47.24150085449219, -93.30819702148438, -14.536262512207031)
+            * CFrame.Angles(-0, 0, -0)
     }
 
     while true do
-        for _, position in ipairs(positions) do
+        for _, cframe in ipairs(positions) do
             local args = {
                 [1] = "Scout Egg",
-                [2] = CFrame.new(position),
+                [2] = cframe,
                 [3] = false,
                 [4] = "Scout Egg Rainbow",
                 [5] = {
