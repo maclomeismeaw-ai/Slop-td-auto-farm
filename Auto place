@@ -26,10 +26,12 @@ while true do
     for _, position in ipairs(positions) do
         local args = {
             [1] = "Scout Egg",
-            [2] = CFrame.new(position) * CFrame.Angles(-0, 0, -0),
+            [2] = CFrame.new(position) * CFrame.Angles(0, 0, 0),
             [3] = false,
-            [4] = "Scout Egg",
-            [5] = {}
+            [4] = "Scout Egg Rainbow",
+            [5] = {
+                [1] = "Rainbow"
+            }
         }
 
         spawnTower:InvokeServer(unpack(args))
