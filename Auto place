@@ -16,49 +16,26 @@ task.spawn(function()
     end
 end)
 
-task.spawn(function()
-    local positions = {
-        Vector3.new(20.852458953857422, -93.30819702148438, 59.62067413330078),
-        Vector3.new(18.167613983154297, -93.30819702148438, 56.619293212890625),
-        Vector3.new(-19.582534790039062, -93.30819702148438, -4.966239929199219)
-    }
+local positions = {
+    Vector3.new(20.852458953857422, -93.30819702148438, 59.62067413330078),
+    Vector3.new(18.167613983154297, -93.30819702148438, 56.619293212890625),
+    Vector3.new(-19.582534790039062, -93.30819702148438, -4.966239929199219)
+}
 
-    while true do
-        for _, position in ipairs(positions) do
-            local args = {
-                [1] = "Scout Egg",
-                [2] = CFrame.new(position),
-                [3] = false,
-                [4] = "Scout Egg Rainbow",
-                [5] = {
-                    [1] = "Rainbow"
-                }
+while true do
+    for _, position in ipairs(positions) do
+        local args = {
+            [1] = "Scout Egg",
+            [2] = CFrame.new(position) * CFrame.Angles(0, 0, 0),
+            [3] = false,
+            [4] = "Scout Egg Rainbow",
+            [5] = {
+                [1] = "Rainbow"
             }
+        }
 
-            spawnTower:InvokeServer(unpack(args))
-            task.wait(0.5)
-        end
+        spawnTower:InvokeServer(unpack(args))
+
+        task.wait(0.5)
     end
-end)
-
-task.spawn(function()
-    local positions = {
-        Vector3.new(-18.335433959960938, -90.34748077392578, 27.566856384277344),
-        Vector3.new(-23.260211944580078, -90.34270477294922, 27.70346450805664)
-    }
-
-    while true do
-        for _, position in ipairs(positions) do
-            local args = {
-                [1] = "Upgraded Titan Speakerman",
-                [2] = CFrame.new(position),
-                [3] = false,
-                [4] = "Upgraded Titan Speakerman",
-                [5] = {}
-            }
-
-            spawnTower:InvokeServer(unpack(args))
-            task.wait(0.5)
-        end
-    end
-end)
+end
