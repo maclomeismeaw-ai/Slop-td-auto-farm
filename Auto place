@@ -3,7 +3,6 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local player = Players.LocalPlayer
 local spawnTower = ReplicatedStorage.Functions.SpawnTower
-local towers = workspace.Towers
 
 task.spawn(function()
     while true do
@@ -17,18 +16,6 @@ task.spawn(function()
     end
 end)
 
-local function countTowers(name)
-    local count = 0
-
-    for _, tower in ipairs(towers:GetChildren()) do
-        if tower.Name == name then
-            count += 1
-        end
-    end
-
-    return count
-end
-
 task.spawn(function()
     local positions = {
         CFrame.new(20.08582305908203, -93.30819702148438, 56.9916877746582)
@@ -41,23 +28,21 @@ task.spawn(function()
             * CFrame.Angles(-0, 0, -0)
     }
 
-    for _, cframe in ipairs(positions) do
-        if countTowers("Scout Egg") >= 3 then
-            break
-        end
-
-        local args = {
-            [1] = "Scout Egg",
-            [2] = cframe,
-            [3] = false,
-            [4] = "Scout Egg Rainbow",
-            [5] = {
-                [1] = "Rainbow"
+    while true do
+        for _, cframe in ipairs(positions) do
+            local args = {
+                [1] = "Scout Egg",
+                [2] = cframe,
+                [3] = false,
+                [4] = "Scout Egg Rainbow",
+                [5] = {
+                    [1] = "Rainbow"
+                }
             }
-        }
 
-        spawnTower:InvokeServer(unpack(args))
-        task.wait(1)
+            spawnTower:InvokeServer(unpack(args))
+            task.wait(1)
+        end
     end
 end)
 
@@ -67,77 +52,70 @@ task.spawn(function()
         Vector3.new(-23.260211944580078, -90.34270477294922, 27.70346450805664)
     }
 
-    for _, position in ipairs(positions) do
-        if countTowers("Upgraded Titan Speakerman") >= 2 then
-            break
+    while true do
+        for _, position in ipairs(positions) do
+            local args = {
+                [1] = "Upgraded Titan Speakerman",
+                [2] = CFrame.new(position),
+                [3] = false,
+                [4] = "Upgraded Titan Speakerman",
+                [5] = {}
+            }
+
+            spawnTower:InvokeServer(unpack(args))
+            task.wait(1)
         end
-
-        local args = {
-            [1] = "Upgraded Titan Speakerman",
-            [2] = CFrame.new(position),
-            [3] = false,
-            [4] = "Upgraded Titan Speakerman",
-            [5] = {}
-        }
-
-        spawnTower:InvokeServer(unpack(args))
-        task.wait(1)
     end
 end)
 
 task.spawn(function()
-    while countTowers("Upgraded Titan Speakerman") < 2 do
-        task.wait(0.2)
-    end
+    workspace.Towers:WaitForChild("Upgraded Titan Speakerman")
 
-    if countTowers("Maxwell") >= 1 then
-        return
-    end
-
-    local args = {
-        [1] = "Maxwell",
-        [2] = CFrame.new(
-            -23.176471710205078,
-            -94.03501892089844,
-            24.859634399414062
-        ),
-        [3] = false,
-        [4] = "Maxwell Rainbow",
-        [5] = {
-            [1] = "Rainbow"
-        }
-    }
-
-    spawnTower:InvokeServer(unpack(args))
-
-    while countTowers("Maxwell") < 1 do
-        task.wait(0.2)
-    end
-
-    local positions = {
-        CFrame.new(-27.666027069091797, -93.8260726928711, 29.662490844726562)
-            * CFrame.Angles(-0, 0, -0),
-
-        CFrame.new(-27.768638610839844, -93.8260726928711, 26.919063568115234)
-            * CFrame.Angles(-0, 0, -0)
-    }
-
-    for _, cframe in ipairs(positions) do
-        if countTowers("Happy Computer") >= 2 then
-            break
-        end
-
-        local args = {
-            [1] = "Happy Computer",
-            [2] = cframe,
-            [3] = false,
-            [4] = "Happy Computer Rainbow",
-            [5] = {
-                [1] = "Rainbow"
+    task.spawn(function()
+        while true do
+            local args = {
+                [1] = "Maxwell",
+                [2] = CFrame.new(
+                    -23.176471710205078,
+                    -94.03501892089844,
+                    24.859634399414062
+                ),
+                [3] = false,
+                [4] = "Maxwell Rainbow",
+                [5] = {
+                    [1] = "Rainbow"
+                }
             }
+
+            spawnTower:InvokeServer(unpack(args))
+            task.wait(1)
+        end
+    end)
+
+    task.spawn(function()
+        local positions = {
+            CFrame.new(-27.666027069091797, -93.8260726928711, 29.662490844726562)
+                * CFrame.Angles(-0, 0, -0),
+
+            CFrame.new(-27.768638610839844, -93.8260726928711, 26.919063568115234)
+                * CFrame.Angles(-0, 0, -0)
         }
 
-        spawnTower:InvokeServer(unpack(args))
-        task.wait(0.5)
-    end
+        while true do
+            for _, cframe in ipairs(positions) do
+                local args = {
+                    [1] = "Happy Computer",
+                    [2] = cframe,
+                    [3] = false,
+                    [4] = "Happy Computer Rainbow",
+                    [5] = {
+                        [1] = "Rainbow"
+                    }
+                }
+
+                spawnTower:InvokeServer(unpack(args))
+                task.wait(0.5)
+            end
+        end
+    end)
 end)
