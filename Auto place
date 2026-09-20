@@ -4,7 +4,6 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local player = Players.LocalPlayer
 local spawnTower = ReplicatedStorage.Functions.SpawnTower
 
--- Auto Upgrade
 task.spawn(function()
     while true do
         local upgrade = player.PlayerGui.GameGui.UnitManager.All.Upgrade
@@ -17,7 +16,6 @@ task.spawn(function()
     end
 end)
 
--- Scout Egg
 task.spawn(function()
     local positions = {
         Vector3.new(20.852458953857422, -93.30819702148438, 59.62067413330078),
@@ -43,7 +41,6 @@ task.spawn(function()
     end
 end)
 
--- Upgraded Titan Speakerman 2 ตัว
 task.spawn(function()
     local positions = {
         Vector3.new(-18.335433959960938, -90.34748077392578, 27.566856384277344),
