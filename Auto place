@@ -93,29 +93,21 @@ task.spawn(function()
     end)
 
     task.spawn(function()
-        local positions = {
-            CFrame.new(-27.666027069091797, -93.8260726928711, 29.662490844726562)
-                * CFrame.Angles(-0, 0, -0),
-
-            CFrame.new(-27.768638610839844, -93.8260726928711, 26.919063568115234)
-                * CFrame.Angles(-0, 0, -0)
-        }
-
         while true do
-            for _, cframe in ipairs(positions) do
-                local args = {
-                    [1] = "Happy Computer",
-                    [2] = cframe,
-                    [3] = false,
-                    [4] = "Happy Computer Rainbow",
-                    [5] = {
-                        [1] = "Rainbow"
-                    }
-                }
+            local args = {
+                [1] = "Astronaut TV Man",
+                [2] = CFrame.new(
+                    -27.666027069091797,
+                    -93.8260726928711,
+                    29.662490844726562
+                ),
+                [3] = false,
+                [4] = "Astronaut TV Man",
+                [5] = {}
+            }
 
-                spawnTower:InvokeServer(unpack(args))
-                task.wait(0.5)
-            end
+            spawnTower:InvokeServer(unpack(args))
+            task.wait(0.5)
         end
     end)
 end)
