@@ -1,0 +1,32 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local playerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
+local gui = playerGui:WaitForChild("SlopMutatorGui")
+
+local function voteAll()
+    local event = ReplicatedStorage.Events.SlopMutator
+
+    local votes = {
+        "Blackout",
+        "TinySlop",
+        "Brainrot",
+        "Regeneration",
+        "None"
+    }
+
+    for _, mutator in ipairs(votes) do
+        event:FireServer("Vote", mutator)
+        task.wait(0.5)
+    end
+end
+
+if gui:FindFirstChild("MutatorVoting") then
+    voteAll()
+end
+
+gui.ChildAdded:Connect(function(child)
+    if child.Name == "MutatorVoting" then
+        voteAll()
+    end
+end)
