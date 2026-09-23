@@ -1,12 +1,13 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local playerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
-local gui = playerGui:WaitForChild("SlopMutatorGui")
+local mutatorVoting = Players.LocalPlayer.PlayerGui
+    :WaitForChild("SlopMutatorGui")
+    :WaitForChild("MutatorVoting")
+
+local event = ReplicatedStorage.Events.SlopMutator
 
 local function voteAll()
-    local event = ReplicatedStorage.Events.SlopMutator
-
     local votes = {
         "Blackout",
         "TinySlop",
@@ -21,12 +22,12 @@ local function voteAll()
     end
 end
 
-if gui:FindFirstChild("MutatorVoting") then
-    voteAll()
-end
-
-gui.ChildAdded:Connect(function(child)
-    if child.Name == "MutatorVoting" then
+mutatorVoting:GetPropertyChangedSignal("Visible"):Connect(function()
+    if mutatorVoting.Visible then
         voteAll()
     end
 end)
+
+if mutatorVoting.Visible then
+    voteAll()
+end
