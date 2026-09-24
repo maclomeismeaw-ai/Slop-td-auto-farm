@@ -18,7 +18,7 @@ local function voteAll()
 
     for _, mutator in ipairs(votes) do
         event:FireServer("Vote", mutator)
-        task.wait(0.5)
+        task.wait(1)
     end
 end
 
